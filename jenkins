@@ -2,17 +2,29 @@ pipeline {
     agent any
 
     stages {
-            stage("Build") {
-                steps {
-                    echo "Building...."   
-                }
-                post{
-                    success{
-                        mail to: "rjepchumba078@gmail.com",
-                        subject:"build staus email",
-                        body: "build was successful"
-                    }
+        stage("Build") {
+            steps {
+                echo "Building...."   
+            }
+            post {
+                success {
+                    mail to: "rjepchumba078@gmail.com",
+                    subject: "Build Status Email",
+                    body: "Build was successful"
                 }
             }
+        }
+        stage("Deploy") {
+            steps {
+                echo "Deploying...."
+            }
+            post {
+                success {
+                    mail to: "rjepchumba078@gmail.com",
+                    subject: "Deployment Status Email",
+                    body: "Deployment was successful"
+                }
+            }
+        }
     }
 }
